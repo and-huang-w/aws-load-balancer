@@ -89,29 +89,29 @@ jobs:
     - name: Step 07 - Terraform Show
       run: terraform -chdir=./terraform show
 
-    destroy:
-      name: Destroy
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/destroy'
-      steps:
-    - name: Terraform Setup
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ env.TERRAFORM_VERSION }}
+  destroy:
+    name: Destroy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/destroy'
+    steps:
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
 
-    - name: CheckOut GitHub Repo
-      uses: actions/checkout@v4
+      - name: CheckOut GitHub Repo
+        uses: actions/checkout@v4
 
-    - name: Authenticate with AWS
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        aws-access-key-id    : ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-session-token    : ${{ secrets.AWS_SESSION_TOKEN }}
-        aws-region           : us-east-1
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id    : ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token    : ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region           : us-east-1
 
-    - name: Terraform Init
-      run: terraform -chdir=./terraform init
+      - name: Terraform Init
+        run: terraform -chdir=./terraform init
 
-    - name: Terraform Destroy
-      run: terraform -chdir=./terraform destroy -auto-approve
+      - name: Terraform Destroy
+        run: terraform -chdir=./terraform destroy -auto-approve
