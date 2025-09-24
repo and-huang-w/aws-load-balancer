@@ -8,9 +8,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "tf-cp20250201-anderson"
-    key    = "practice-cp20250201.tfstate"
-    region = "us-east-1"
+    bucket  = "tf-cp20250201-anderson"
+    key     = "practice-cp20250201.tfstate"
+    region  = "us-east-1"
     encrypt = true
   }
 }

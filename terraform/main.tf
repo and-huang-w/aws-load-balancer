@@ -1,11 +1,11 @@
 
 module "network" {
-  source            = "../modules/network"
-  vpc_cidr          = "10.0.0.0/16"
-  az1a              = "us-east-1a"
-  az1b              = "us-east-1b"
-  subnet_az1a_cidr  = "10.0.1.0/24"
-  subnet_az1b_cidr  = "10.0.2.0/24"
+  source           = "../modules/network"
+  vpc_cidr         = "10.0.0.0/16"
+  az1a             = "us-east-1a"
+  az1b             = "us-east-1b"
+  subnet_az1a_cidr = "10.0.1.0/24"
+  subnet_az1b_cidr = "10.0.2.0/24"
 }
 
 module "compute" {
