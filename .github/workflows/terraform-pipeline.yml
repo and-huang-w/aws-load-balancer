@@ -90,11 +90,10 @@ jobs:
       run: terraform -chdir=./terraform show
 
   destroy:
-    if: github.ref == 'refs/heads/destroy'
-    name: Destroy
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/destroy'
-    steps:
+  if: github.ref == 'refs/heads/destroy'
+  name: Destroy
+  runs-on: ubuntu-latest
+  steps:
     - name: Terraform Setup
       uses: hashicorp/setup-terraform@v3
       with:
